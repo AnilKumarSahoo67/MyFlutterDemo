@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
+import 'package:flutter_application_1/utils/Routes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +19,19 @@ class MyApp extends StatelessWidget {
     var day = "Thursday";
     const py = 3.14;
 
-    return MaterialApp(home: HomePage());
+    return MaterialApp(
+      home: const LoginPage(),
+      themeMode: ThemeMode.light,
+      debugShowCheckedModeBanner: true,
+      theme: ThemeData(
+          primarySwatch: Colors.cyan,
+          fontFamily: GoogleFonts.lato().fontFamily),
+      darkTheme: ThemeData(brightness: Brightness.dark),
+      routes: {
+        // "/": (context) => LoginPage(),
+        MyRouts.loginRoute: (context) => LoginPage(),
+        MyRouts.homeRoute: (context) => HomePage(),
+      },
+    );
   }
 }
