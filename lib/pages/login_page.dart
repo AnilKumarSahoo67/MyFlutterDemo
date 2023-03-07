@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               Image.asset(
-                "images/login_image2.png",
+                "assets/images/login_image2.png",
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
                 height: 300,
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password can not be empty";
-                        } else if (value!.length < 6) {
+                        } else if (value.length < 6) {
                           return "Password length should be atleast 6";
                         }
                         return null;
@@ -122,6 +122,7 @@ class _LoginPageState extends State<LoginPage> {
         changeButton = true;
       });
       await Future.delayed(const Duration(seconds: 1));
+      // ignore: use_build_context_synchronously
       await Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
       setState(() {
