@@ -2,17 +2,41 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class MyThemes {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
+      brightness: Brightness.light,
       primarySwatch: Colors.cyan,
       fontFamily: GoogleFonts.lato().fontFamily,
-      appBarTheme: AppBarTheme(color: Colors.white, elevation: 0.0),
-      iconTheme: IconThemeData(color: Colors.black),
-      textTheme: Theme.of(context).textTheme);
+      cardColor: Colors.white,
+      canvasColor: creamColor,
+      accentColor: Colors.black,
+      buttonColor: darkBluishColor,
+      appBarTheme: AppBarTheme(
+          color: Colors.white,
+          elevation: 0.0,
+          iconTheme: IconThemeData(color: Colors.black),
+          textTheme: Theme.of(context).textTheme));
 
-  static ThemeData darkTheme() => ThemeData(brightness: Brightness.dark);
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
+      brightness: Brightness.dark,
+      fontFamily: GoogleFonts.lato().fontFamily,
+      cardColor: Colors.black,
+      canvasColor: darkCreamColor,
+      accentColor: Colors.white,
+      buttonColor: lightBluishColor,
+      appBarTheme: AppBarTheme(
+        color: Colors.black,
+        elevation: 0.0,
+        iconTheme: IconThemeData(color: Colors.white),
+        textTheme: Theme.of(context).textTheme,
+      ));
 
   static Color creamColor = Color(0xfff5f5f5);
+  static Color darkCreamColor = Vx.gray900;
   static Color darkBluishColor = Color(0xff403b58);
+  static Color lightBluishColor = Vx.indigo400;
+  static Color lightTextColor = Vx.white;
+  static Color darkTextColor = Color(0xff403b58);
 }

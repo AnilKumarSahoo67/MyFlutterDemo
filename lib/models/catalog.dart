@@ -102,11 +102,11 @@ class CatalogModel {
   static var product = [
     Items(
         id: 1,
-        name: "Anil",
-        desc: "My name is anil",
+        name: "iPhone 14 Pro Max",
+        desc: "Apple iPhone 14 Pro Max 256 GB (Deep Purple, 6 GB RAM)",
         price: 9999,
         color: "#33505a",
         image:
-            "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202211/untitled-1_0-one_one.jpg?VersionId=2UvgyBhEFLLMzztCbeFTTShGb9c33ddU")
+            "https://img3.gadgetsnow.com/gd/images/products/additional/large/G390858_View_1/mobiles/smartphones/apple-iphone-14-pro-max-256-gb-deep-purple-6-gb-ram-.jpg")
   ];
 }

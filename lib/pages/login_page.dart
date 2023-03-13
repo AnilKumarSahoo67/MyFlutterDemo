@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
+import 'package:flutter_application_1/utils/Constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,13 +16,14 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changeButton = false;
+  String userName = "";
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: context.canvasColor,
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -30,15 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.center,
                 height: 300,
               ),
-              Text(
-                "Welcome $name",
-                style: TextStyle(
-                  fontFamily: GoogleFonts.lato().fontFamily,
-                  color: Colors.black,
-                  fontSize: 24,
-                ),
-                textAlign: TextAlign.center,
-              ),
+              "Welcome $name".text.xl2.uppercase.bold.make().py16(),
               const SizedBox(
                 height: 20.0,
               ),
@@ -49,22 +46,39 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextFormField(
                       decoration: const InputDecoration(
-                          hintText: "Enter Username", labelText: "Username"),
+                          hintText: "Enter Username",
+                          labelText: "Username*",
+                          icon: Icon(CupertinoIcons.person),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.indigo, width: 2.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          )),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Username can not be empty";
                         }
+                        userName = value;
                         return null;
                       },
                       onChanged: (value) {
                         name = value;
                         setState(() {});
                       },
-                    ),
+                    ).py12(),
                     TextFormField(
                       obscureText: true,
                       decoration: const InputDecoration(
-                          hintText: "Enter Password", labelText: "Password"),
+                          hintText: "Enter Password",
+                          labelText: "Password*",
+                          icon: Icon(CupertinoIcons.lock),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.indigo, width: 2.0),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          )),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Password can not be empty";
@@ -78,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 20.0,
                     ),
                     Material(
-                      color: Colors.deepPurple,
+                      color: context.theme.buttonColor,
                       borderRadius:
                           BorderRadius.circular(changeButton ? 25 : 6),
                       child: InkWell(
@@ -121,13 +135,19 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changeButton = true;
       });
+      saveUserData();
       await Future.delayed(const Duration(seconds: 1));
-      // ignore: use_build_context_synchronously
       await Navigator.push(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
       setState(() {
         changeButton = false;
       });
     }
+  }
+
+  void saveUserData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString(Constants.userName, userName);
+    sharedPreferences.setBool(Constants.isLogin, true);
   }
 }
