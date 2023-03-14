@@ -5,7 +5,6 @@ import 'package:flutter_application_1/widgets/drawer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'package:flutter_application_1/models/catalog.dart';
-import 'package:flutter_application_1/widgets/themes.dart';
 
 import '../widgets/home_widgets/catalog_header.dart';
 import '../widgets/home_widgets/catalog_list.dart';
@@ -33,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, MyRouts.cartRoutes),
         focusColor: context.theme.accentColor,
-        child: Icon(
+        child: const Icon(
           CupertinoIcons.cart,
           color: Colors.white,
         ),
@@ -44,7 +43,7 @@ class _HomePageState extends State<HomePage> {
           padding: Vx.m12,
           child: Column(
             children: [
-              CatalogHeader(),
+              const CatalogHeader(),
               if (dummyList.isNotEmpty && dummyList.length > 2)
                 CatalogList(list: dummyList).py12().expand()
               else

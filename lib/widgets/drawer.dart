@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/utils/Constants.dart';
 import 'package:flutter_application_1/utils/MyRoutes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,16 +35,19 @@ class _MyDrawer extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: context.canvasColor,
+        color: context.theme.canvasColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
+              decoration: BoxDecoration(color: context.theme.buttonColor),
+              curve: Curves.easeInOut,
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(color: context.theme.buttonColor),
                 accountName: Text(
-                  (userName.length > 0) ? userName : "Anil Sahoo",
-                  style: TextStyle(color: Colors.white),
+                  (userName.isNotEmpty) ? userName : "Anil Sahoo",
+                  style: const TextStyle(color: Colors.white),
                 ),
                 accountEmail: const Text(
                   "sahooanilkumar@gmail.com",
@@ -55,58 +59,96 @@ class _MyDrawer extends State<MyDrawer> {
               ),
             ),
             const ListTile(
-              leading: Icon(
-                CupertinoIcons.home,
-                color: Colors.cyan,
-              ),
+              leading: Icon(CupertinoIcons.home),
               title: Text(
                 "Home",
                 textScaleFactor: 1.2,
-                style:
-                    TextStyle(color: Colors.cyan, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xff403b58), fontWeight: FontWeight.bold),
               ),
             ),
             const ListTile(
               leading: Icon(
                 CupertinoIcons.profile_circled,
-                color: Colors.cyan,
               ),
               title: Text(
                 "Profile",
                 textScaleFactor: 1.2,
-                style:
-                    TextStyle(color: Colors.cyan, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xff403b58), fontWeight: FontWeight.bold),
               ),
             ),
             const ListTile(
               leading: Icon(
                 CupertinoIcons.mail,
-                color: Colors.cyan,
               ),
               title: Text(
                 "Email",
                 textScaleFactor: 1.2,
-                style:
-                    TextStyle(color: Colors.cyan, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Color(0xff403b58), fontWeight: FontWeight.bold),
               ),
             ),
-            const ListTile(
+            ListTile(
               title: InkWell(
-                child: Text(
-                  "Logout",
-                  textScaleFactor: 1.2,
-                  style: TextStyle(
-                      color: Colors.cyan, fontWeight: FontWeight.bold),
+                onTap: () {
+                  //logout
+                  showAlertDialog();
+                },
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                  child: Text(
+                    "Logout",
+                    textScaleFactor: 1.2,
+                    style: TextStyle(
+                        color: Color(0xff403b58), fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-              leading: Icon(
+              leading: const Icon(
                 CupertinoIcons.arrow_uturn_right,
-                color: Colors.cyan,
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  void showAlertDialog() {
+    Widget okButton = TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+          logout();
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(),
+              ));
+        },
+        child: const Text("Ok"));
+
+    var alertDialog = AlertDialog(
+      title: const Text("Alert!",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          )),
+      content: const Text("Hey are you sure you want to logout"),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: ((context) {
+        return alertDialog;
+      }),
+    );
+  }
+
+  void logout() async {
+    var sharedPref = await SharedPreferences.getInstance();
+    sharedPref.setBool(Constants.isLogin, false);
   }
 }

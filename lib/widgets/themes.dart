@@ -11,7 +11,7 @@ class MyThemes {
       fontFamily: GoogleFonts.lato().fontFamily,
       cardColor: Colors.white,
       canvasColor: creamColor,
-      accentColor: Colors.black,
+      accentColor: darkBluishColor,
       buttonColor: darkBluishColor,
       appBarTheme: AppBarTheme(
           color: Colors.white,
@@ -24,7 +24,7 @@ class MyThemes {
       fontFamily: GoogleFonts.lato().fontFamily,
       cardColor: Colors.black,
       canvasColor: darkCreamColor,
-      accentColor: Colors.white,
+      accentColor: creamColor,
       buttonColor: lightBluishColor,
       appBarTheme: AppBarTheme(
         color: Colors.black,
