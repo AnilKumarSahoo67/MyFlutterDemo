@@ -7,6 +7,10 @@ import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../models/onboard_item.dart';
+import '../widgets/onboarding/dot_indicator.dart';
+import '../widgets/onboarding/on_boarding_item.dart';
+
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({super.key});
 
@@ -37,7 +41,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         body: SafeArea(
             // safe area means the status bar or notification bar
             child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),//padding in both side
           child: Column(
             children: [
               Expanded(
@@ -80,7 +84,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     child: ElevatedButton(
                         onPressed: () {
                           _pageIndicator == 2
-                              ? goToLoginPage()
+                              ? goToLoginPage(context)
                               : _pageController.nextPage(
                                   duration: const Duration(microseconds: 300),
                                   curve: Curves.linear);
@@ -103,7 +107,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         )));
   }
 
-  goToLoginPage() async {
+  goToLoginPage(BuildContext context) async {
     await Future.delayed(const Duration(milliseconds: 300));
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) {
@@ -113,31 +117,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 }
 
-class DotIndicator extends StatelessWidget {
-  const DotIndicator({
-    Key? key,
-    this.isActive = false,
-  }) : super(key: key);
-
-  final bool isActive;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 4,
-      width: isActive ? 12 : 4,
-      decoration: BoxDecoration(
-          color: MyThemes.darkBluishColor,
-          borderRadius: const BorderRadius.all(Radius.circular(12))),
-    );
-  }
-}
-
-class OnBoard {
-  final String image, title, desc;
-
-  OnBoard({required this.image, required this.title, required this.desc});
-}
 
 final List<OnBoard> demo_list = [
   OnBoard(
@@ -160,43 +139,4 @@ final List<OnBoard> demo_list = [
   )
 ];
 
-class OnBoardingContent extends StatelessWidget {
-  const OnBoardingContent({
-    Key? key,
-    required this.images,
-    required this.title,
-    required this.desc,
-  }) : super(key: key);
-  final String images;
-  final String title;
-  final String desc;
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Spacer(),
-        Image.asset(
-          images,
-          height: 250,
-        ),
-        const Spacer(),
-        Text(title,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                color: MyThemes.darkBluishColor,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.bold)),
-        const SizedBox(
-          height: 16.0,
-        ),
-        Text(
-          desc,
-          textAlign: TextAlign.center,
-          style: const TextStyle(decoration: TextDecoration.none),
-        ),
-        const Spacer()
-      ],
-    );
-  }
-}

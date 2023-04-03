@@ -25,15 +25,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: const SplachScreen(),
       themeMode: ThemeMode.system,
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       theme: MyThemes.lightTheme(context),
       darkTheme: MyThemes.darkTheme(context),
       routes: {
         // "/": (context) => LoginPage(),
-        MyRouts.loginRoute: (context) => LoginPage(),
-        MyRouts.homeRoute: (context) => HomePage(),
+        MyRouts.loginRoute: (context) => const LoginPage(),
+        MyRouts.homeRoute: (context) => const HomePage(),
         MyRouts.cartRoutes: (context) => CartPage(),
-        MyRouts.splashRoutes: (context) => SplachScreen()
+        MyRouts.splashRoutes: (context) => const SplachScreen()
       },
     );
   }

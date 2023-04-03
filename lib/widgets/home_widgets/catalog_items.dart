@@ -5,6 +5,7 @@ import '../themes.dart';
 
 class CatalogItem extends StatelessWidget {
   final Items items;
+
   const CatalogItem({super.key, required this.items});
 
   @override
@@ -34,14 +35,15 @@ class CatalogItem extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                             context.theme.buttonColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
+                        shape:
+                            MaterialStateProperty.all(const StadiumBorder())),
                     child: "Add to cart".text.color(Colors.white).make())
               ],
             ).pOnly(right: 8.0)
           ],
         ))
       ],
-    )).color(context.cardColor).rounded.square(130).make().py8();
+    )).color(context.cardColor).rounded.square(130).shadowXs.make().py8().px4();
   }
 }
 
@@ -49,8 +51,16 @@ class CatalogImage extends StatelessWidget {
   final String image;
 
   const CatalogImage({super.key, required this.image});
+
   @override
   Widget build(BuildContext context) {
-    return Image.network(image).box.p8.rounded.make().p12().w40(context);
+    return Image.network(image)
+        .box
+        .cyan100
+        .p8
+        .rounded
+        .make()
+        .p12()
+        .w40(context);
   }
 }

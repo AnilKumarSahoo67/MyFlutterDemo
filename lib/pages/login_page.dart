@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: "Enter username",
                             prefixIcon: const Icon(CupertinoIcons.person_fill,
                                 color: Color(0xff403b58)),
-                            suffix: hidingIcon()),
+                            suffixIcon: hidingIcon()),
                         onChanged: (value) {
                           name = value;
                           setState(() {});
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: isToggleEye,
                         textInputAction: TextInputAction.done,
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(

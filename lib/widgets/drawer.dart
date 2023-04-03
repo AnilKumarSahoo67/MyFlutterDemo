@@ -1,14 +1,16 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/utils/Constants.dart';
 import 'package:flutter_application_1/utils/MyRoutes.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyDrawer extends StatefulWidget {
+  const MyDrawer({super.key});
+
   @override
   State<StatefulWidget> createState() => _MyDrawer();
 }
@@ -47,11 +49,11 @@ class _MyDrawer extends State<MyDrawer> {
                 decoration: BoxDecoration(color: context.theme.buttonColor),
                 accountName: Text(
                   (userName.isNotEmpty) ? userName : "Anil Sahoo",
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontFamily: GoogleFonts.lato().fontFamily),
                 ),
-                accountEmail: const Text(
+                accountEmail: Text(
                   "sahooanilkumar@gmail.com",
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white,fontFamily: GoogleFonts.lato().fontFamily),
                 ),
                 currentAccountPicture: CircleAvatar(
                   backgroundImage: NetworkImage(imageUrl),
