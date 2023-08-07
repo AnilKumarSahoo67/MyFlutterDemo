@@ -4,6 +4,7 @@ import 'package:flutter_application_1/pages/navigation/dashboard_screen.dart';
 import 'package:flutter_application_1/pages/navigation/home_screen.dart';
 import 'package:flutter_application_1/pages/navigation/notification_screen.dart';
 import 'package:flutter_application_1/pages/navigation/profile_screen.dart';
+import 'package:flutter_application_1/pages/navigation/search_screen.dart';
 import 'package:flutter_application_1/utils/MyRoutes.dart';
 import 'package:flutter_application_1/widgets/drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int index  = 0;
-  static const _buildBody = <Widget> [HomeScreen(),DashboardScreen(),NotificationScreen(),ProfileScreen()];
+  static const _buildBody = <Widget> [HomeScreen(),SearchScreen(),DashboardScreen(),NotificationScreen(),ProfileScreen()];
   static final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 
@@ -66,14 +67,14 @@ class _HomePageState extends State<HomePage> {
                         Icon(
                           Icons.home_rounded,
                           color: (index == 0)
-                              ? Colors.black
+                              ? Colors.deepPurpleAccent
                               : Colors.black54,
                         ),
                         Text(
                           "Home",
                           style: TextStyle(
                               color: (index == 0)
-                                  ? Colors.black
+                                  ? Colors.deepPurpleAccent
                                   : Colors.black54,
                               fontFamily: GoogleFonts.lato().fontFamily),
                         )
@@ -94,14 +95,14 @@ class _HomePageState extends State<HomePage> {
                         Icon(
                           Icons.search_rounded,
                           color: (index == 1)
-                              ? Colors.black
+                              ? Colors.deepPurpleAccent
                               : Colors.black54,
                         ),
                         Text(
                           "Search",
                           style: TextStyle(
                               color: (index == 1)
-                                  ? Colors.black
+                                  ? Colors.deepPurpleAccent
                                   : Colors.black54,
                               fontFamily: GoogleFonts.lato().fontFamily),
                         )
@@ -120,16 +121,16 @@ class _HomePageState extends State<HomePage> {
                     child: Column(
                       children: [
                         Icon(
-                          Icons.notifications_rounded,
+                          Icons.dashboard_rounded,
                           color: (index == 2)
-                              ? Colors.black
+                              ? Colors.deepPurpleAccent
                               : Colors.black54,
                         ),
                         Text(
-                          "Notification",
+                          "Dashboard",
                           style: TextStyle(
                               color: (index == 2)
-                                  ? Colors.black
+                                  ? Colors.deepPurpleAccent
                                   : Colors.black54,
                               fontFamily: GoogleFonts.lato().fontFamily),
                         )
@@ -144,20 +145,48 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: SizedBox(
                     height: 50,
+                    width: 75,
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.notifications_rounded,
+                          color: (index == 3)
+                              ? Colors.deepPurpleAccent
+                              : Colors.black54,
+                        ),
+                        Text(
+                          "Notification",
+                          style: TextStyle(
+                              color: (index == 3)
+                                  ? Colors.deepPurpleAccent
+                                  : Colors.black54,
+                              fontFamily: GoogleFonts.lato().fontFamily),
+                        )
+                      ],
+                    )),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    index = 4;
+                  });
+                },
+                child: SizedBox(
+                    height: 50,
                     width: 50,
                     child: Column(
                       children: [
                         Icon(
                           Icons.person_rounded,
-                          color: (index == 3)
-                              ? Colors.black
+                          color: (index == 4)
+                              ? Colors.deepPurpleAccent
                               : Colors.black54,
                         ),
                         Text(
                           "Profile",
                           style: TextStyle(
-                              color: (index == 3)
-                                  ? Colors.black
+                              color: (index == 4)
+                                  ? Colors.deepPurpleAccent
                                   : Colors.black54,
                               fontFamily: GoogleFonts.lato().fontFamily),
                         )

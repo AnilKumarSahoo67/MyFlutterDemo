@@ -49,8 +49,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 child: PageView.builder(
                   //view pager
                   reverse: false,
+                  physics: BouncingScrollPhysics(),
                   dragStartBehavior: DragStartBehavior.start,
-                  pageSnapping: false,
+                  pageSnapping: true,
                   controller: _pageController,
                   onPageChanged: (value) {
                     setState(() {

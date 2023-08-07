@@ -125,7 +125,7 @@ class _MyDrawer extends State<MyDrawer> {
           Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => LoginPage(),
+                builder: (context) => const LoginPage(),
               ));
         },
         child: const Text("Ok"));
@@ -152,5 +152,6 @@ class _MyDrawer extends State<MyDrawer> {
   void logout() async {
     var sharedPref = await SharedPreferences.getInstance();
     sharedPref.setBool(Constants.isLogin, false);
+    sharedPref.clear();
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_application_1/pages/cart_page.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/login_page.dart';
 import 'package:flutter_application_1/pages/on_boarding_page.dart';
+import 'package:flutter_application_1/pages/send_money/send_money_page.dart';
 import 'package:flutter_application_1/pages/splash.dart';
 import 'package:flutter_application_1/utils/MyRoutes.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
         MyRouts.loginRoute: (context) => const LoginPage(),
         MyRouts.homeRoute: (context) => const HomePage(),
         MyRouts.cartRoutes: (context) => CartPage(),
-        MyRouts.splashRoutes: (context) => const SplachScreen()
+        MyRouts.splashRoutes: (context) => const SplachScreen(),
+        MyRouts.sendMoneyRoutes:(context) => const SendMoney()
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../widgets/themes.dart';
 
@@ -15,13 +16,32 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          body: Container(
-            padding:const EdgeInsets.all(8.0),
-            child: Center(
-              child: Text("Notification",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: MyThemes.darkTextColor),),
+      body: Container(
+        height: double.infinity,
+        width:
+            MediaQuery.of(context).size.width, //// here to position the child
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
+        child: Stack(
+          children: [
+            Container(
+              height: 250,
+              decoration: const BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius:
+                      BorderRadius.only(bottomLeft: Radius.circular(50))),
+              child: Container(
+                height: 150,
+                decoration: const BoxDecoration(
+                  color: Colors.blueAccent,
+                  shape: BoxShape.circle,
+                ),
+              ),
             ),
-          ),
-        )
-    );
+          ],
+        ),
+      ),
+    ));
   }
 }
